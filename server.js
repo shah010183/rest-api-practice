@@ -28,18 +28,20 @@ app.get('/todos', function(req,res){
 // GET /todos/:id
 app.get('/todos/:id', function(req,res){
 //  res.send('Request with id: '+ req.params.id);
-  var todoId = req.params.id;
+  var todoId = parseInt(req.params.id);
   var todoObj;
   todos.forEach(function(todo){
-     console.log (todo.description);
-     if (todo.id.toString() === todoId) {
+     console.log (todo.id);
+     if (todo.id === todoId) {
         todoObj = todo;
         console.log("todoObj in for loop that matched: " + util.inspect(todoObj, false, null));
-        res.json(todoObj);
-     } else {
-       res.status(404).send();
-     }
+
+      }
+    //  } else {
+    //    res.status(404).send();
+    //  }
   });
+  res.json(todoObj);
 //  console.log("todoObj: " + util.inspect(todoObj, false, null));
 
 });
